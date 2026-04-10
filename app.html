@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Ride Riddles</title>
+    <style>
+        /* Internal CSS for the Riddle App */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #2d435a; 
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .app-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        #riddle-display {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin: 30px 0;
+            min-height: 60px;
+            color: #444;
+        }
+
+        #answer-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #27ae60; 
+            margin-bottom: 30px;
+            min-height: 35px;
+            opacity: 0; 
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            background-color: #f1c40f; 
+            color: #2c3e50;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #d4ac0d;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+        <h1>Easy Enough Riddles</h1>
+        <p>It's pretty simple!</p>
+        
+        <div id="riddle-display">Click "Next Riddle" to begin!</div>
+        
+        <div id="answer-display">...</div>
+        
+        <div class="btn-group">
+            <button onclick="showAnswer()">Show Answer</button>
+            <button onclick="generateRiddle()">Next Riddle</button>
+        </div>
+        
+        <a href="scratch.html" class="back-link">Return to Main Site</a>
+    </div>
+
+
+    <script>
+        // An array of objects holding our riddles and their answers
+        const riddles = [
+            {
+                question: "I have many doors but no house. I have many beds but no family. People visit me but rarely stay forever. What am I?",
+                answer: "A Hotel"
+            },
+            {
+                question: "A lady walks into a bar and asks for a glass of water, the bartender pulls out a gun and points it at her. She says thank you and walks out... explain",
+                answer: "She had hiccups "
+            },
+            {
+                question: "Two penguins are paddling in the desert. Penguin 1: Wears your paddle. Penguin 2: Sure does...Explain",
+                answer: "Wears your paddles as in wearing it down"
+            },
+            {
+                question: "What has two fingers and a thumb, but is not living?",
+                answer: "A Glove"
+            },
+            {
+                question: "What loses its head in the morning but gets it back at night?",
+                answer: "A Pillow"
+            }
+        ];
+
+        // Variables to keep track of the current riddle
+        let currentRiddleIndex = 0;
+
+        // Function to pick a random riddle
+        function generateRiddle() {
+            // Hide the previous answer
+            document.getElementById("answer-display").style.opacity = 0;
+            
+            // Pick a random number based on how many riddles we have
+            currentRiddleIndex = Math.floor(Math.random() * riddles.length);
+            
+            // Show the question on the screen
+            document.getElementById("riddle-display").innerText = riddles[currentRiddleIndex].question;
+            
+            // Set the answer text, but keep it hidden
+            document.getElementById("answer-display").innerText = riddles[currentRiddleIndex].answer;
+        }
+
+        // Function to reveal the answer
+        function showAnswer() {
+            // Change the opacity to 1 so the text fades in
+            document.getElementById("answer-display").style.opacity = 1;
+        }
+    </script>
+</body>
+</html>
